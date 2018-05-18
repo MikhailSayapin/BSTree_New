@@ -120,7 +120,7 @@ namespace BSTree
 
 			cout << root->data << " ";
 		}
-		void insert(Node *&NTree, int data)
+		void insert(Node *NTree, int data)
 		{
 			if (data < NTree->data)
 			{
