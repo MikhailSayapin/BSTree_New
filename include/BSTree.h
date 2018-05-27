@@ -2,26 +2,26 @@ using namespace std;
 namespace BSTree
 {
 	bool a = false;
-	struct Node 
+	struct Node
 	{
 		int data;
 		Node *Right;
 		Node *Left;
 	};
 
-	class Tree 
+	class Tree
 	{
 		Node * root = nullptr;
-		void add_node(int data, Node *&NTree) 
+		void add_node(int data, Node *&NTree)
 		{
-			if (NTree == nullptr) 
+			if (NTree == nullptr)
 			{
 				NTree = new Node{ data, nullptr, nullptr };
 			}
 
-			if (data < NTree->data) 
+			if (data < NTree->data)
 			{
-				if (NTree->Left != nullptr) 
+				if (NTree->Left != nullptr)
 				{
 					add_node(data, NTree->Left);
 				}
@@ -32,8 +32,8 @@ namespace BSTree
 			}
 
 
-			if (data > NTree->data) 
-			{ 
+			if (data > NTree->data)
+			{
 				if (NTree->Right != nullptr)
 				{
 					add_node(data, NTree->Right);
@@ -181,11 +181,11 @@ namespace BSTree
 			if (root->Left != nullptr)
 			{
 				check_node(root->Left, data);
-			}	
+			}
 			if (root->Right != nullptr)
 			{
 				check_node(root->Right, data);
-			}		
+			}
 		}
 		void del_node(Node *&NTree, int data) //В разработке!
 		{
@@ -201,7 +201,7 @@ namespace BSTree
 
 				}
 			}
-		} 
+		}
 		void deltree(Node *node)
 		{
 			delete node;
@@ -224,7 +224,7 @@ namespace BSTree
 		{
 			inverse(root);
 		}
-		void add_element(int data) 
+		void add_element(int data)
 		{
 			add_node(data, root);
 		}
