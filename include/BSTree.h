@@ -44,13 +44,21 @@ namespace BSTree
 				}
 			}
 		}
+
+		void check_tree()
+		{
+			if (root == nullptr)
+			{
+				cerr << "Дерево пусто" << endl;
+				return;
+			}
+		}
 		void print_tree(Node *root, int space)
 		{
 			if (root == nullptr)
 			{
 				return;
 			}
-
 			int count = 1;
 			space = space + count;
 			print_tree(root->Right, space);
@@ -65,11 +73,7 @@ namespace BSTree
 		}
 		void straight(Node * root)
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-				return;
-			}
+			check_tree();
 			cout << root->data << " ";
 			if (root->Left != nullptr)
 			{
@@ -82,12 +86,7 @@ namespace BSTree
 		}
 		void symmetric(Node *root)
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-				return;
-			}
-
+			check_tree();
 			if (root->Left != nullptr)
 			{
 				symmetric(root->Left);
@@ -102,12 +101,7 @@ namespace BSTree
 		}
 		void inverse(Node *root)
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-				return;
-			}
-
+			check_tree();
 			if (root->Left != nullptr)
 			{
 				inverse(root->Left);
@@ -163,11 +157,27 @@ namespace BSTree
 				write_to_file(root->Right, fout);
 			}
 		}
-		void read_from_file(Node *root, ifstream &fin, string filename)
+		void read_from_file(Node *root, ifstream &fin,string filename)
 		{
+			int k = 0;
 			string str;
 			getline(fin, str);
-			cout << str;
+			for (int i = 0; i < str.length(); i++)
+			{
+				if (str[i] == ' ')
+				{
+					k++;
+				}
+				fin.close();
+				fin.open(filename);
+				for (int i = 0; i <= k; i++)
+				{
+					fin >> str;
+					add_node(atoi(str.c_str()));
+				}
+				fin.close();
+			}
+			
 		}
 		void check_node(Node *root, int data)
 		{
@@ -202,55 +212,36 @@ namespace BSTree
 				}
 			}
 		}
-		void deltree(Node *node)
-		{
-			delete node;
-			if (node != nullptr)
-			{
-				deltree(node->Right);
-				deltree(node->Left);
-			}
-		}
 	public:
-		void get_straight()
+		void straight()
 		{
 			straight(root);
 		}
-		void get_symmetric()
+		void symmetric()
 		{
 			symmetric(root);
 		}
-		void get_inverce()
+		void inverce()
 		{
 			inverse(root);
 		}
-		void add_element(int data)
+		void add_node(int data)
 		{
 			add_node(data, root);
 		}
-		void get_print_tree()
+		void print_tree()
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто!" << endl;
-			}
+			check_tree();
 			print_tree(root, 0);
 		}
-		void get_insert(int data)
+		void insert(int data)
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто!" << endl;
-			}
+			check_tree();
 			insert(root, data);
 		}
-		void get_write_to_file()
+		void write_to_file()
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-			}
-
+			check_tree();
 			string filename;
 			char choose;
 			cout << "Введите путь к файлу" << endl;
@@ -267,7 +258,6 @@ namespace BSTree
 				}
 				write_to_file(root, fout);
 			}
-
 			if (choose == 'N')
 			{
 				fout.open(filename, ios::out | ios::app);
@@ -277,30 +267,24 @@ namespace BSTree
 				}
 				write_to_file(root, fout);
 			}
+			fout.close();
 		}
-		void get_check_node(int data)
+		void check_node(int data)
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-				return;
-			}
+			check_tree();
 			check_node(root, data);
 			if (!a)
 			{
 				cout << "Узел не найден" << endl;
 			}
 		}
-		void get_del_node(int data) //В разработке!
+		void del_node(int data) //В разработке!
 		{
 			del_node(root, data);
 		}
-		void get_read_from_file()
+		void read_from_file()
 		{
-			if (root == nullptr)
-			{
-				cout << "Дерево пусто" << endl;
-			}
+			check_tree();
 
 			string filename;
 			cout << "Введите путь к файлу" << endl;
@@ -309,16 +293,13 @@ namespace BSTree
 			fin.open(filename);
 			if (!fin.is_open())
 			{
-				cout << "Не удаётся открыть файл" << endl;
+				cerr << "Файл с заданным путём не существует" << endl;
 				return;
 			}
 			read_from_file(root, fin, filename);
 			fin.close();
 		}
-		void get_deltree()
-		{
-			deltree(root);
-		}
+		
 	};
 
 }
