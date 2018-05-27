@@ -33,11 +33,24 @@ int main(int argc, char * argv[])
 {
 	setlocale(LC_ALL, "Russian");
 	Tree *tree = new Tree;
-	for (int i = 0; i < argc-1; i++)
+	int *n = new int;
+	int *mas = new int[*n];
+	cout << "Введите кол-во :";
+	cin >> *n;
+	for (int i = 0; i < *n; i++)
+	{
+		cout << "Введите " << i + 1 << " число";
+		cin >> *(mas + i);
+	}
+	for (int i = 0; i < *n; i++)
+	{
+		tree->add_element(*(mas + i));
+	}
+	/*for (int i = 0; i < argc - 1; i++)
 	{
 		cout << "Введите " << i + 1 << " элемент" << endl;
-		tree->add_element(atoi(argv[i+1]));
-	}
+		tree->add_element(atoi(argv[i + 1]));
+	}*/
 	while (true)
 	{
 		MenuOut();
@@ -72,7 +85,7 @@ int main(int argc, char * argv[])
 				tree->get_inverce();
 				break;
 			}
-			
+
 			else
 			{
 				cout << "Неправильный ввод" << endl;
@@ -147,5 +160,5 @@ int main(int argc, char * argv[])
 		tree->get_deltree();
 		}
 	}
-	
+
 }
