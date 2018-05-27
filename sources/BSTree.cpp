@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "BSTree.h"
+#include <stdlib.h>
 
 using namespace std;
 using namespace BSTree;
@@ -33,23 +34,25 @@ int main(int argc, char * argv[])
 {
 	setlocale(LC_ALL, "Russian");
 	Tree *tree = new Tree;
+	cout << "Введите кол-во элементов" << endl;
 	int *n = new int;
-	int *mas = new int[*n];
-	cout << "Введите кол-во :";
 	cin >> *n;
+	int *mas = new int[*n];
 	for (int i = 0; i < *n; i++)
 	{
-		cout << "Введите " << i + 1 << " число";
+		cout << "Введите " << i + 1 << " элемент" << endl;
 		cin >> *(mas + i);
 	}
 	for (int i = 0; i < *n; i++)
 	{
-		tree->add_element(*(mas + i));
+		tree->add_node(*(mas + i));
 	}
+	delete[] mas;
+	delete n;
 	/*for (int i = 0; i < argc - 1; i++)
 	{
-		cout << "Введите " << i + 1 << " элемент" << endl;
-		tree->add_element(atoi(argv[i + 1]));
+	cout << "Введите " << i + 1 << " элемент" << endl;
+	tree->add_element(atoi(argv[i + 1]));
 	}*/
 	while (true)
 	{
@@ -60,7 +63,7 @@ int main(int argc, char * argv[])
 		{
 		case 1:
 		{
-			tree->get_print_tree();
+			tree->print_tree();
 			break;
 		}
 		case 2:
@@ -70,19 +73,19 @@ int main(int argc, char * argv[])
 			cin >> ch;
 			if (ch == 'a')
 			{
-				tree->get_straight();
+				tree->straight();
 				break;
 			}
 
 			if (ch == 'b')
 			{
-				tree->get_symmetric();
+				tree->symmetric();
 				break;
 			}
 
 			if (ch == 'c')
 			{
-				tree->get_inverce();
+				tree->inverce();
 				break;
 			}
 
@@ -97,7 +100,7 @@ int main(int argc, char * argv[])
 			cout << "\nВведите значение для нового узла" << endl;
 			int ins;
 			cin >> ins;
-			tree->get_insert(ins);
+			tree->insert(ins);
 			break;
 		}
 		case 4:
@@ -112,12 +115,12 @@ int main(int argc, char * argv[])
 		}
 		case 5:
 		{
-			tree->get_write_to_file();
+			tree->write_to_file();
 			break;
 		}
 		case 6:
 		{
-			tree->get_read_from_file();
+			tree->read_from_file();
 			break;
 		}
 		case 7:
@@ -125,7 +128,7 @@ int main(int argc, char * argv[])
 			int data;
 			cout << "Введите узел для проверки" << endl;
 			cin >> data;
-			tree->get_check_node(data);
+			tree->check_node(data);
 			a = false;
 			break;
 		}
@@ -157,7 +160,6 @@ int main(int argc, char * argv[])
 			cout << "Неверный ввод" << endl << endl;
 			return 0;
 		}
-		tree->get_deltree();
 		}
 	}
 
