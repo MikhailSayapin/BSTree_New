@@ -34,26 +34,10 @@ int main(int argc, char * argv[])
 {
 	setlocale(LC_ALL, "Russian");
 	Tree *tree = new Tree;
-	cout << "Введите кол-во элементов" << endl;
-	int *n = new int;
-	cin >> *n;
-	int *mas = new int[*n];
-	for (int i = 0; i < *n; i++)
+	for (int i = 0; i < argc - 1; i++)
 	{
-		cout << "Введите " << i + 1 << " элемент" << endl;
-		cin >> *(mas + i);
+		tree->add_element(atoi(argv[i + 1]));
 	}
-	for (int i = 0; i < *n; i++)
-	{
-		tree->add_node(*(mas + i));
-	}
-	delete[] mas;
-	delete n;
-	/*for (int i = 0; i < argc - 1; i++)
-	{
-	cout << "Введите " << i + 1 << " элемент" << endl;
-	tree->add_element(atoi(argv[i + 1]));
-	}*/
 	while (true)
 	{
 		MenuOut();
