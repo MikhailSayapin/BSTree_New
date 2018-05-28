@@ -36,7 +36,7 @@ int main(int argc, char * argv[])
 	Tree *tree = new Tree;
 	for (int i = 0; i < argc - 1; i++)
 	{
-		tree->add_element(atoi(argv[i + 1]));
+		tree->add_node(atoi(argv[i + 1]));
 	}
 	while (true)
 	{
