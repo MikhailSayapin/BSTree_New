@@ -213,6 +213,7 @@ namespace BSTree
 			}
 		}
 	public:
+		Tree();
 		void straight()
 		{
 			straight(root);
@@ -300,6 +301,7 @@ namespace BSTree
 			fin.close();
 		}
 		
+		~Tree();
 	};
 
 }
